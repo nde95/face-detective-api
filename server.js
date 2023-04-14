@@ -54,16 +54,35 @@ app.post('/register', (req,res) => {
 })
 
 
+app.get('/profile/:id', (req, res) => {
+    const { id } = req.params;
+    const user = database.users.find(user => user.id === id);
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404).json('No such user exists!');
+    }
+});
+
+
+app.put('/image', (req, res) => {
+    console.log(req.body);
+    const { id } = req.body;
+    let found = false;
+    database.users.forEach(user => {
+        if (user.id === id) {
+            found = true;
+            user.entries++
+            return res.json(user.entries);
+        }
+    })
+    if (!found) {
+        res.status(400).json('User not found!');
+    }
+})
+  
+
 app.listen(3000, ()=> {
     console.log('app is running on 3000')
 })
 
-
-/*
-/signin --> POST
-/register --> POST
-/profile/:userid --> GET = user
-/image --> PUT because user exists--> updated score
-
-
-*/
