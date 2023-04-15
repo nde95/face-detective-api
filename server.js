@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
 
-const postgres = require('knex')({
+const db = require('knex')({
     client: 'pg',
     connection: {
       host : '127.0.0.1',
@@ -14,7 +14,6 @@ const postgres = require('knex')({
     }
   });
 
-  postgres.select('*').from('users');
   
 
 
@@ -59,15 +58,17 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req,res) => {
     const { email, name, password } = req.body;
-    database.users.push({
-        id: '125',
-        name: name,
+    db('users')
+        .returning('*')
+        .insert({
         email: email,
-        password: password,
-        entries: 0,
+        name: name,
         joined: new Date()
     })
-    res.json(database.users[database.users.length-1]);
+    .then(user => {
+        res.json(user[0]);
+    })
+    .catch(err => res.status(400).json('Error registering account, please try again!'))
 })
 
 
