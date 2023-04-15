@@ -3,6 +3,20 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
 
+const postgres = require('knex')({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      port : 5432,
+      user : 'postgres',
+      password : 'pure1337',
+      database : 'face-detective'
+    }
+  });
+
+  postgres.select('*').from('users');
+  
+
 
 
 const app = express();
