@@ -1,7 +1,9 @@
 const express = require('express');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
+
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -22,6 +24,7 @@ const db = require('knex')({
 
 
 const app = express();
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(cors())
 
