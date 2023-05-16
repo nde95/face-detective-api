@@ -11,11 +11,12 @@ const image = require('./controllers/image');
 const db = require('knex')({
     client: 'pg',
     connection: {
-      host : 'dpg-chhd8it269v0od2vb1dg-a.oregon-postgres.render.com',
+      ssl: { rejectUnauthorized: false },
+      host : process.env.DATABASE_HOST,
       port : 5432,
-      user : 'face_detective_db_user',
-      password : 'oRfX0qTbzo3OYTtpsOsLDR3kvr4jTG8f',
-      database : 'face_detective_db'
+      user : process.env.DATABASE_USER,
+      password : process.env.DATABASE_PW,
+      database : process.env.DATABASE_DB
     }
   });
 
