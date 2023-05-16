@@ -11,7 +11,7 @@ const image = require('./controllers/image');
 const db = require('knex')({
     client: 'pg',
     connection: {
-      host : 'dpg-chhd8it269v0od2vb1dg-a',
+      host : 'dpg-chhd8it269v0od2vb1dg-a.oregon-postgres.render.com',
       port : 5432,
       user : 'face_detective_db_user',
       password : 'oRfX0qTbzo3OYTtpsOsLDR3kvr4jTG8f',
