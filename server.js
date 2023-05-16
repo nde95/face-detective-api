@@ -12,11 +12,11 @@ const db = require('knex')({
     client: 'pg',
     connection: {
       ssl: { rejectUnauthorized: false },
-      host : process.env.DATABASE_HOST,
+      host : dpg-chhd8it269v0od2vb1dg-a.oregon-postgres.render.com,
       port : 5432,
-      user : process.env.DATABASE_USER,
-      password : process.env.DATABASE_PW,
-      database : process.env.DATABASE_DB
+      user : face_detective_db_user,
+      password : oRfX0qTbzo3OYTtpsOsLDR3kvr4jTG8f,
+      database : face_detective_db
     }
   });
 
